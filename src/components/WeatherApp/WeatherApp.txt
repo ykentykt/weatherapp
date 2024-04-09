@@ -1,0 +1,58 @@
+// TODO: import useState from react. Create a hook to set
+// the weather icon whenever the user searches for a location's
+// weather.
+import React from "react"
+import Humidity from "../Humidity/Humidity"
+import WindSpeed from "../WindSpeed/WindSpeed"
+import SearchBar from "../SearchBar/SearchBar"
+import "./WeatherApp.css"
+
+import clear_icon from "../assets/clear.png"
+import cloud_icon from "../assets/cloud.png"
+import drizzle_icon from "../assets/drizzle.png"
+import humidity_icon from "../assets/humidity.png"
+import rain_icon from "../assets/rain.png"
+import snow_icon from "../assets/snow.png"
+import wind_icon from "../assets/wind.png"
+
+const WeatherApp = () => {
+  // TODO: add your api key
+  let api_key = ""
+
+  const search = async () => {
+    const element = document.getElementsByClassName("cityInput")
+    if (element[0].value === "") {
+      return 0
+    }
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=metric&appid=${api_key}`
+
+    let response = await fetch(url)
+    let data = await response.json()
+
+
+    // TODO: grab the humidity, wind speed, temperature, and location
+    // from the api. Check the icon from the api. Example, "01n" or "01d"
+    // would be set to a specific weather icon.
+
+  }
+
+
+  // TODO: Finish implementation for the return statement
+  return (
+    <div className="container">
+      <SearchBar onSearch={search} />
+      <div className="weather-img">
+        <img src={} alt="Weather Icon" />
+      </div>
+      <div className="weather-temp">24°C</div>
+      <div className="weather-location">London</div>
+      <div className="data-container">
+        <Humidity icon={humidity_icon} />
+        <WindSpeed icon={wind_icon} />
+      </div>
+    </div>
+  )
+}
+
+export default WeatherApp
